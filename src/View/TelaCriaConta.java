@@ -1,16 +1,25 @@
 package View;
 
 import Controller.ContaController;
+import Controller.EventoDepositar;
+import Controller.EventoSacar;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.awt.geom.Arc2D;
 
 /**
  * Created by Rafael on 28/11/2015.
  */
 public class TelaCriaConta extends JFrame{
 
-    private ContaController contaController;
+    public ContaController contaController;
+    public JLabel jlSaldo;
+
 
     public TelaCriaConta(ContaController controller, String title){
         setTitle(title);
@@ -19,6 +28,7 @@ public class TelaCriaConta extends JFrame{
 
         this.setSize(600,300);
         this.setVisible(true);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     }
 
@@ -28,7 +38,7 @@ public class TelaCriaConta extends JFrame{
         jPanel.setLayout(new GridLayout(7, 1, 10, 10));
 
         JLabel jlNome = new JLabel("Bem Vindo a conte de: " + controller.nome);
-        JLabel jlSaldo = new JLabel("Seu saldo Atual e de: " + controller.saldoInicial);
+        jlSaldo = new JLabel("Seu saldo Atual e de: " + controller.saldoInicial);
         JLabel jlPergunta = new JLabel("O que deseja fazer?");
         JButton sacar = new JButton("Fazer Saque");
         JButton depositar = new JButton("Fazer Deposito");
@@ -43,5 +53,9 @@ public class TelaCriaConta extends JFrame{
         jPanel.add(transferir);
         jPanel.add(extrato);
         add(jPanel);
+
+        sacar.addActionListener(new Controller.EventoSacar(this));
+        depositar.addActionListener(new Controller.EventoDepositar(this));
     }
+
 }
