@@ -26,6 +26,7 @@ public class EventoCriarConta implements ActionListener {
 
         new ContaController(contaSelecionada, nome, cpf, numConta, saldoInicial);
 
+        exec.setVisible(false);
 
 
     }

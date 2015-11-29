@@ -28,6 +28,7 @@ public class Exec extends JFrame {
 		setSize(800, 500);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 	}
 	
 	public void montaTela(){
@@ -41,7 +42,7 @@ public class Exec extends JFrame {
         jtfCPF = new JTextField();
         jlNumConta = new JLabel("Digite o numero da conta");
         jtfNumConta = new JTextField();
-        jlSaldoInicial = new JLabel("Digite o saldo inicial da conta");
+        jlSaldoInicial = new JLabel("Digite o saldo inicial da conta. Ex 100.00, 500.16");
         jtfSaldoInicial = new JTextField();
 		jLabel = new JLabel("Selecione qual tipo de conta voce quer criar.");
 
