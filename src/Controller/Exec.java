@@ -12,9 +12,11 @@ public class Exec extends JFrame {
 	private JLabel jLabel;
     private JLabel jlNome;
     private JLabel jlCPF;
+    private JLabel jlNumConta;
     private JLabel jlSaldoInicial;
     private JTextField jtfNome;
     private JTextField jtfCPF;
+    private JTextField jtfNumConta;
     private JTextField jtfSaldoInicial;
 	private JButton jButton;
 
@@ -31,12 +33,14 @@ public class Exec extends JFrame {
 	public void montaTela(){
 		jPanel = new JPanel();
 		setLayout(new FlowLayout(FlowLayout.CENTER));
-		jPanel.setLayout(new GridLayout(5, 2, 10, 10));
+		jPanel.setLayout(new GridLayout(6, 2, 10, 10));
 
         jlNome = new JLabel("Nome do Titular:");
         jtfNome = new JTextField();
         jlCPF = new JLabel("Digite o CPF do titular:");
         jtfCPF = new JTextField();
+        jlNumConta = new JLabel("Digite o numero da conta");
+        jtfNumConta = new JTextField();
         jlSaldoInicial = new JLabel("Digite o saldo inicial da conta");
         jtfSaldoInicial = new JTextField();
 		jLabel = new JLabel("Selecione qual tipo de conta voce quer criar.");
@@ -50,6 +54,8 @@ public class Exec extends JFrame {
         jPanel.add(jtfNome);
         jPanel.add(jlCPF);
         jPanel.add(jtfCPF);
+        jPanel.add(jlNumConta);
+        jPanel.add(jtfNumConta);
         jPanel.add(jlSaldoInicial);
         jPanel.add(jtfSaldoInicial);
 		jPanel.add(jLabel);
@@ -70,9 +76,10 @@ public class Exec extends JFrame {
 
             String nome = jtfNome.getText();
             String cpf = jtfCPF.getText();
+            String numConta = jtfNumConta.getText();
             Double saldoInicial = Double.parseDouble(jtfSaldoInicial.getText());
 
-			new ContaController(contaSelecionada, nome, cpf, saldoInicial);
+			new ContaController(contaSelecionada, nome, cpf, numConta, saldoInicial);
 
 		}
 	}

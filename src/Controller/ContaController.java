@@ -10,20 +10,19 @@ import java.util.ArrayList;
 public class ContaController {
     private Conta conta;
     private TelaCriaConta tela;
-    public ArrayList comboTipoContas;
+    public ArrayList menuOperacoes;
 
-    public ContaController(IConta contaSelecionada, String nome, String cpf, Double saldoInicial) {
-        /*Conta conta = (Conta) contaSelecionada;
-        comboTipoContas = new ArrayList();
+    public ContaController(IConta contaSelecionada, String nome, String cpf, String nunConta, Double saldoInicial) {
+        Conta conta = (Conta) contaSelecionada;
+        menuOperacoes = new ArrayList();
 
-        IConta contaCorrente = IConta.fabricaConta.criaConta(1);
-        IConta contaPoupanca = IConta.fabricaConta.criaConta(2);
-        IConta contaSalario = IConta.fabricaConta.criaConta(3);
+        IConta ope1 = conta.sacar();
+        IConta ope2 = conta.depositar();
+        IConta ope3 = conta.transferir();
 
-        comboTipoContas.add(contaCorrente);
-        comboTipoContas.add(contaPoupanca);
-        comboTipoContas.add(contaSalario);
-*/
+        menuOperacoes.add(ope1);
+        menuOperacoes.add(ope2);
+        menuOperacoes.add(ope3);
         tela = new TelaCriaConta(this, "Tela para criar conta");
 
     }
