@@ -1,6 +1,6 @@
 package View;
 
-import Controller.CriaContaController;
+import Controller.ContaController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,18 +10,16 @@ import java.awt.*;
  */
 public class TelaCriaConta extends JFrame{
 
-    private CriaContaController criaContaController;
+    private ContaController contaController;
 
-    public TelaCriaConta(CriaContaController controller, String title){
+    public TelaCriaConta(ContaController controller, String title){
         setTitle(title);
-        this.criaContaController = controller;
+        this.contaController = controller;
+        this.montaTela();
 
-    }
+        this.setSize(600,300);
+        this.setVisible(true);
 
-    public void configuraTela(){
-        setSize(500, 500);
-        setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public void montaTela(){
@@ -29,14 +27,9 @@ public class TelaCriaConta extends JFrame{
         setLayout(new FlowLayout(FlowLayout.CENTER));
         jPanel.setLayout(new GridLayout(3, 2, 10, 10));
 
-        JLabel jlConta = new JLabel("Selecione qual tipo de conta voce quer criar.");
 
-        String[] opcoesContas = new String[]{" ", "Conta-Corrente", "Conta-Poupanca", "Conta-Salario"};
-        JComboBox comboBoxContas = new JComboBox(opcoesContas);
+        JOptionPane.showMessageDialog(null, contaController);
 
-        jPanel.add(jlConta);
-        jPanel.add(comboBoxContas);
-        add(jPanel);
 
     }
 }
