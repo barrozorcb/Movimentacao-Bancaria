@@ -8,16 +8,16 @@ import java.awt.event.ActionListener;
 public class Exec extends JFrame {
 
 	private JPanel jPanel;
-	private JComboBox jComboBox;
+	public JComboBox jComboBox;
 	private JLabel jLabel;
     private JLabel jlNome;
     private JLabel jlCPF;
     private JLabel jlNumConta;
     private JLabel jlSaldoInicial;
-    private JTextField jtfNome;
-    private JTextField jtfCPF;
-    private JTextField jtfNumConta;
-    private JTextField jtfSaldoInicial;
+    public JTextField jtfNome;
+    public JTextField jtfCPF;
+    public JTextField jtfNumConta;
+    public JTextField jtfSaldoInicial;
 	private JButton jButton;
 
 	public Exec() {
@@ -63,31 +63,12 @@ public class Exec extends JFrame {
 		jPanel.add(jButton);
 		add(jPanel);
 
-		jButton.addActionListener(new CriaConta());
+		jButton.addActionListener(new EventoCriarConta(this));
 
-	}
-
-	public class CriaConta implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-
-			IConta contaSelecionada = IConta.fabricaConta.criaConta(jComboBox.getSelectedIndex());
-
-            String nome = jtfNome.getText();
-            String cpf = jtfCPF.getText();
-            String numConta = jtfNumConta.getText();
-            Double saldoInicial = Double.parseDouble(jtfSaldoInicial.getText());
-
-			new ContaController(contaSelecionada, nome, cpf, numConta, saldoInicial);
-
-
-		}
 	}
 
 	public static void main(String[] args) {
 		Exec exec = new Exec();
-
 		exec.montaTela();
 		exec.configuraTela();
 	}
