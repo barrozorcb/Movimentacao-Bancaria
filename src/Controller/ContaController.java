@@ -14,12 +14,14 @@ public class ContaController {
     public String cpf;
     public String numConta;
     public Double saldoInicial;
+    public ArrayList historico;
 
     public ContaController(IConta contaSelecionada, String nome, String cpf, String nunConta, Double saldoInicial) {
         this.nome = nome;
         this.cpf = cpf;
         this.numConta = nunConta;
         this.saldoInicial = saldoInicial;
+        this.historico = new ArrayList();
 
         Conta conta = (Conta) contaSelecionada;
         opcoesOperacoes = new ArrayList();
@@ -27,6 +29,9 @@ public class ContaController {
         IConta ope1 = conta.sacar();
         IConta ope2 = conta.depositar();
         IConta ope3 = conta.transferir();
+
+
+
 
         opcoesOperacoes.add(ope1);
         opcoesOperacoes.add(ope2);

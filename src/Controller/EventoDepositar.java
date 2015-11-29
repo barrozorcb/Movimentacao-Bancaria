@@ -24,6 +24,8 @@ public class EventoDepositar implements ActionListener {
 
         Double valorDeposito = Double.parseDouble(valorInformado);
 
+        telaCriaConta.contaController.historico.add("Deposito no valor de: " + valorInformado);
+
         telaCriaConta.contaController.saldoInicial += valorDeposito;
 
         telaCriaConta.jlSaldo.setText("Seu saldo Atual e de: " + String.valueOf(telaCriaConta.contaController.saldoInicial));

@@ -5,6 +5,7 @@ import View.TelaCriaConta;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by Rafael on 29/11/2015.
@@ -23,6 +24,8 @@ public class EventoSacar implements ActionListener {
         String valorInformado = JOptionPane.showInputDialog(null, "Informe o valor do saque");
 
         Double valorSaque = Double.parseDouble(valorInformado);
+
+        telaCriaConta.contaController.historico.add("Saque no valor de: " + valorInformado);
 
         telaCriaConta.contaController.saldoInicial -= valorSaque;
 

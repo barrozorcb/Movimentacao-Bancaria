@@ -1,16 +1,9 @@
 package View;
 
-import Controller.ContaController;
-import Controller.EventoDepositar;
-import Controller.EventoSacar;
+import Controller.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.geom.Arc2D;
 
 /**
  * Created by Rafael on 28/11/2015.
@@ -54,8 +47,10 @@ public class TelaCriaConta extends JFrame{
         jPanel.add(extrato);
         add(jPanel);
 
-        sacar.addActionListener(new Controller.EventoSacar(this));
-        depositar.addActionListener(new Controller.EventoDepositar(this));
+        sacar.addActionListener(new EventoSacar(this));
+        depositar.addActionListener(new EventoDepositar(this));
+        transferir.addActionListener(new EventoTransferencia(this));
+        extrato.addActionListener(new EventoExtrato(this));
     }
 
 }
