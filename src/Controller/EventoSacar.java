@@ -1,35 +1,30 @@
 package Controller;
 
-import View.TelaCriaConta;
+import View.TelaOperacoesConta;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 /**
  * Created by Rafael on 29/11/2015.
  */
 public class EventoSacar implements ActionListener {
 
-    private TelaCriaConta telaCriaConta;
+    private TelaOperacoesConta telaOperacoesConta;
 
-    public EventoSacar(TelaCriaConta telaCriaConta) {
-       this.telaCriaConta = telaCriaConta;
+    public EventoSacar(TelaOperacoesConta telaOperacoesConta) {
+       this.telaOperacoesConta = telaOperacoesConta;
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String valorInformado = JOptionPane.showInputDialog(null, "Informe o valor do saque");
 
-        Double valorSaque = Double.parseDouble(valorInformado);
+        telaOperacoesConta.contaController.getConta().sacar(Double.parseDouble(valorInformado));
 
-        telaCriaConta.contaController.historico.add("Saque no valor de: " + valorInformado);
 
-        telaCriaConta.contaController.saldoInicial -= valorSaque;
-
-        telaCriaConta.jlSaldo.setText("Seu saldo Atual e de: " + String.valueOf(telaCriaConta.contaController.saldoInicial));
+        telaOperacoesConta.jlSaldo.setText("Seu saldo Atual e de: " + String.valueOf(telaOperacoesConta.contaController.getConta().getSaldo()));
 
     }
 }

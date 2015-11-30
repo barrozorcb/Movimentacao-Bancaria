@@ -1,6 +1,6 @@
 package Controller;
 
-import View.TelaCriaConta;
+import View.TelaOperacoesConta;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,10 +11,10 @@ import java.awt.event.ActionListener;
  */
 public class EventoTransferencia implements ActionListener {
 
-    private TelaCriaConta telaCriaConta;
+    private TelaOperacoesConta telaOperacoesConta;
 
-    public EventoTransferencia(TelaCriaConta telaCriaConta) {
-        this.telaCriaConta = telaCriaConta;
+    public EventoTransferencia(TelaOperacoesConta telaOperacoesConta) {
+        this.telaOperacoesConta = telaOperacoesConta;
     }
 
 
@@ -23,14 +23,9 @@ public class EventoTransferencia implements ActionListener {
         String numContaTransferencia = JOptionPane.showInputDialog(null, "Informe a conta a ser transferida");
         String valorInformado = JOptionPane.showInputDialog(null, "Informe o valor da transferencia");
 
-        Double valorTransferencia = Double.parseDouble(valorInformado);
+        telaOperacoesConta.contaController.getConta().transferir(Double.parseDouble(valorInformado), numContaTransferencia);
 
-        telaCriaConta.contaController.historico.add("Transferencia no valor de: " + valorInformado +
-                                                    " para conta " + numContaTransferencia);
-
-        telaCriaConta.contaController.saldoInicial -= valorTransferencia;
-
-        telaCriaConta.jlSaldo.setText("Seu saldo Atual e de: " + String.valueOf(telaCriaConta.contaController.saldoInicial));
+        telaOperacoesConta.jlSaldo.setText("Seu saldo Atual e de: " + String.valueOf(telaOperacoesConta.contaController.getConta().getSaldo()));
 
     }
 }

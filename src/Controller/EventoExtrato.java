@@ -1,6 +1,6 @@
 package Controller;
 
-import View.TelaCriaConta;
+import View.TelaOperacoesConta;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,19 +11,18 @@ import java.awt.event.ActionListener;
  */
 public class EventoExtrato implements ActionListener {
 
-    private TelaCriaConta telaCriaConta;
+    private TelaOperacoesConta telaOperacoesConta;
 
-    public EventoExtrato(TelaCriaConta telaCriaConta) {
-        this.telaCriaConta = telaCriaConta;
+    public EventoExtrato(TelaOperacoesConta telaOperacoesConta) {
+        this.telaOperacoesConta = telaOperacoesConta;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String extrato = "";
-        for (int i=0; i<telaCriaConta.contaController.historico.size(); i++) {
-            extrato += telaCriaConta.contaController.historico.get(i) + "\n";
-        }
+
+        String extrato = telaOperacoesConta.contaController.getConta().emitirExtarto();
+
         JOptionPane.showMessageDialog(null, extrato + "\n" + "Seu saldo atual e de : "
-                                        + telaCriaConta.contaController.saldoInicial);
+                                        + telaOperacoesConta.contaController.getConta().getSaldo());
     }
 }

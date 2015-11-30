@@ -1,5 +1,10 @@
 package Controller;
 
+import Model.FabricaConta;
+import Model.IConta;
+import Model.Pessoa;
+import View.TelaCriaConta;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,23 +13,31 @@ import java.awt.event.ActionListener;
  */
 public class EventoCriarConta implements ActionListener {
 
-    private Exec exec;
+    private TelaCriaConta exec;
 
-    public EventoCriarConta(Exec exec){
+    public EventoCriarConta(TelaCriaConta exec){
         this.exec = exec;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        IConta contaSelecionada = IConta.fabricaConta.criaConta(exec.jComboBox.getSelectedIndex());
+        IConta contaSelecionada = FabricaConta.criaConta(exec.jComboBox.getSelectedIndex());
 
         String nome = exec.jtfNome.getText();
         String cpf = exec.jtfCPF.getText();
         String numConta = exec.jtfNumConta.getText();
         Double saldoInicial = Double.parseDouble(exec.jtfSaldoInicial.getText());
 
-        new ContaController(contaSelecionada, nome, cpf, numConta, saldoInicial);
+        Pessoa pessoa = new Pessoa();
+        pessoa.setCpf(cpf);
+        pessoa.setNomeTitular(nome);
+
+        contaSelecionada.setSaldo(saldoInicial);
+        contaSelecionada.setNumeroConta(numConta);
+        contaSelecionada.setPessoa(pessoa);
+
+        new ContaController(contaSelecionada);
 
         exec.setVisible(false);
 

@@ -1,6 +1,6 @@
 package Controller;
 
-import View.TelaCriaConta;
+import View.TelaOperacoesConta;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,10 +11,10 @@ import java.awt.event.ActionListener;
  */
 public class EventoDepositar implements ActionListener {
 
-    private TelaCriaConta telaCriaConta;
+    private TelaOperacoesConta telaOperacoesConta;
 
-    public EventoDepositar(TelaCriaConta telaCriaConta) {
-        this.telaCriaConta = telaCriaConta;
+    public EventoDepositar(TelaOperacoesConta telaOperacoesConta) {
+        this.telaOperacoesConta = telaOperacoesConta;
     }
 
 
@@ -22,13 +22,9 @@ public class EventoDepositar implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String valorInformado = JOptionPane.showInputDialog(null, "Informe o valor do saque");
 
-        Double valorDeposito = Double.parseDouble(valorInformado);
+        telaOperacoesConta.contaController.getConta().depositar(Double.parseDouble(valorInformado));
 
-        telaCriaConta.contaController.historico.add("Deposito no valor de: " + valorInformado);
-
-        telaCriaConta.contaController.saldoInicial += valorDeposito;
-
-        telaCriaConta.jlSaldo.setText("Seu saldo Atual e de: " + String.valueOf(telaCriaConta.contaController.saldoInicial));
+        telaOperacoesConta.jlSaldo.setText("Seu saldo Atual e de: " + String.valueOf(telaOperacoesConta.contaController.getConta().getSaldo()));
 
     }
 }

@@ -1,56 +1,74 @@
 package View;
 
-import Controller.*;
+import Controller.EventoCriarConta;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by Rafael on 28/11/2015.
+ * Created by barrozo on 30/11/15.
  */
 public class TelaCriaConta extends JFrame{
 
-    public ContaController contaController;
-    public JLabel jlSaldo;
+    private JPanel jPanel;
+    public JComboBox jComboBox;
+    private JLabel jLabel;
+    private JLabel jlNome;
+    private JLabel jlCPF;
+    private JLabel jlNumConta;
+    private JLabel jlSaldoInicial;
+    public JTextField jtfNome;
+    public JTextField jtfCPF;
+    public JTextField jtfNumConta;
+    public JTextField jtfSaldoInicial;
+    private JButton jButton;
 
-
-    public TelaCriaConta(ContaController controller, String title){
-        setTitle(title);
-        this.contaController = controller;
-        this.montaTela(controller);
-
-        this.setSize(600,300);
-        this.setVisible(true);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+    public TelaCriaConta() {
+        setTitle("Movimentação Bancaria");
     }
 
-    public void montaTela(ContaController controller){
-        JPanel jPanel = new JPanel();
-        setLayout(new FlowLayout(FlowLayout.CENTER));
-        jPanel.setLayout(new GridLayout(7, 1, 10, 10));
+    public void configuraTela(){
+        setSize(800, 500);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+    }
 
-        JLabel jlNome = new JLabel("Bem Vindo a conte de: " + controller.nome);
-        jlSaldo = new JLabel("Seu saldo Atual e de: " + controller.saldoInicial);
-        JLabel jlPergunta = new JLabel("O que deseja fazer?");
-        JButton sacar = new JButton("Fazer Saque");
-        JButton depositar = new JButton("Fazer Deposito");
-        JButton transferir = new JButton("Fazer Transferencia");
-        JButton extrato = new JButton("Emitir Extrato da conta");
+
+    public void montaTela(){
+        jPanel = new JPanel();
+        setLayout(new FlowLayout(FlowLayout.CENTER));
+        jPanel.setLayout(new GridLayout(6, 2, 10, 10));
+
+        jlNome = new JLabel("Nome do Titular:");
+        jtfNome = new JTextField();
+        jlCPF = new JLabel("Digite o CPF do titular:");
+        jtfCPF = new JTextField();
+        jlNumConta = new JLabel("Digite o numero da conta");
+        jtfNumConta = new JTextField();
+        jlSaldoInicial = new JLabel("Digite o saldo inicial da conta. Ex 100.00, 500.16");
+        jtfSaldoInicial = new JTextField();
+        jLabel = new JLabel("Selecione qual tipo de conta voce quer criar.");
+
+        String[] opcoesContas = new String[]{" ", "Conta-Corrente", "Conta-Poupanca", "Conta-Salario"};
+        jComboBox = new JComboBox(opcoesContas);
+
+        jButton = new JButton("Enviar");
 
         jPanel.add(jlNome);
-        jPanel.add(jlSaldo);
-        jPanel.add(jlPergunta);
-        jPanel.add(sacar);
-        jPanel.add(depositar);
-        jPanel.add(transferir);
-        jPanel.add(extrato);
+        jPanel.add(jtfNome);
+        jPanel.add(jlCPF);
+        jPanel.add(jtfCPF);
+        jPanel.add(jlNumConta);
+        jPanel.add(jtfNumConta);
+        jPanel.add(jlSaldoInicial);
+        jPanel.add(jtfSaldoInicial);
+        jPanel.add(jLabel);
+        jPanel.add(jComboBox);
+        jPanel.add(jButton);
         add(jPanel);
 
-        sacar.addActionListener(new EventoSacar(this));
-        depositar.addActionListener(new EventoDepositar(this));
-        transferir.addActionListener(new EventoTransferencia(this));
-        extrato.addActionListener(new EventoExtrato(this));
-    }
+        jButton.addActionListener(new EventoCriarConta(this));
 
+    }
 }
